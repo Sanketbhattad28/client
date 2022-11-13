@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./App.css";
+import StreamCreate from "./components/Streams/StreamCreate";
+import StreamDelete from "./components/Streams/StreamDelete";
+import StreamEdit from "./components/Streams/StreamEdit";
+import StreamList from "./components/Streams/StreamList";
+import StreamShow from "./components/Streams/StreamShow";
+import Header from "./components/Header";
+//import { createBrowserHistory } from "history";
+//let history = createBrowserHistory();
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="ui container">
+      <BrowserRouter>
+        <Header />
+        <Routes>
+          <Route path="/" element={<StreamList />}></Route>
+          <Route path="/streams/new" element={<StreamCreate />}></Route>
+          <Route path="/streams/edit/:id" element={<StreamEdit />}></Route>
+          <Route path="/streams/delete/:id" element={<StreamDelete />}></Route>
+          <Route path="/streams/:id" element={<StreamShow />}></Route>
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
